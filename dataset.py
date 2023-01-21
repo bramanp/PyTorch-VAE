@@ -114,14 +114,14 @@ class VAEDataset(LightningDataModule):
 #        =========================  MyDataset Dataset  =========================
             
          train_transforms = transforms.Compose([transforms.RandomHorizontalFlip(),
-                                               transforms.CenterCrop(self.patch_size),
                                                transforms.Resize(self.patch_size),
+                                               transforms.CenterCrop(self.patch_size),
                                                transforms.ToTensor(),
                                                  transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
         
          val_transforms = transforms.Compose([transforms.RandomHorizontalFlip(),
-                                             transforms.CenterCrop(self.patch_size),
                                              transforms.Resize(self.patch_size),
+                                             transforms.CenterCrop(self.patch_size),
                                              transforms.ToTensor(),
                                                transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
 
