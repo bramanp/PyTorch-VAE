@@ -2,7 +2,7 @@ model_params:
   name: 'BetaVAE'
   in_channels: 3
   latent_dim: 128
-  loss_type: 'B'
+  loss_type: 'H'
   gamma: 10.0
   max_capacity: 25
   Capacity_max_iter: 10000
@@ -23,9 +23,9 @@ exp_params:
 
 trainer_params:
   gpus: [0]
-  max_epochs: 10
+  max_epochs: 100
 
 logging_params:
-  save_dir: "logs/"
+  save_dir: "/content/drive/MyDrive/TA/result/logs/"
   manual_seed: 1265
   name: 'BetaVAE'
