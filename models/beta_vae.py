@@ -1,5 +1,5 @@
 import torch
-from modules.losses.vqperceptual import *
+from lpips.modules.losses.vqperceptual import *
 from models import BaseVAE
 from torch import nn
 from torch.nn import functional as F
