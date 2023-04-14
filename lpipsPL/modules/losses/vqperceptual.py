@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from lpips.modules.losses.lpips import LPIPS
-from lpips.modules.discriminator.model import NLayerDiscriminator, weights_init
+from lpipsPL.modules.losses.lpips import LPIPS
+from lpipsPL.modules.discriminator.model import NLayerDiscriminator, weights_init
 
 
 class DummyLoss(nn.Module):

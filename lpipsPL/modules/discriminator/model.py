@@ -2,7 +2,7 @@ import functools
 import torch.nn as nn
 
 
-from lpips.modules.util import ActNorm
+from lpipsPL.modules.util import ActNorm
 
 
 def weights_init(m):
