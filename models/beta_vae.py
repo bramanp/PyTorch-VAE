@@ -1,5 +1,6 @@
 import torch
-from lpipsPL.modules.losses.vqperceptual import *
+import lpips
+#from lpipsPL.modules.losses.vqperceptual import *
 from models import BaseVAE
 from torch import nn
 from torch.nn import functional as F
@@ -28,7 +29,7 @@ class BetaVAE(BaseVAE):
         self.loss_type = loss_type
         self.C_max = torch.Tensor([max_capacity])
         self.C_stop_iter = Capacity_max_iter
-        self.perceptual_loss = LPIPS().eval()
+        self.perceptual_loss = lpips.LPIPS(net='vgg')
 
         modules = []
         if hidden_dims is None:
