@@ -1,6 +1,5 @@
 import torch
-import lpips
-#from lpipsPL.modules.losses.vqperceptual import *
+from lpipsPL.modules.losses.vqperceptual import *
 from models import BaseVAE
 from torch import nn
 from torch.nn import functional as F
@@ -29,7 +28,7 @@ class BetaVAE(BaseVAE):
         self.loss_type = loss_type
         self.C_max = torch.Tensor([max_capacity])
         self.C_stop_iter = Capacity_max_iter
-        self.perceptual_loss = lpips.LPIPS(net='vgg')
+        self.perceptual_loss = LPIPS().eval()
 
         modules = []
         if hidden_dims is None:
@@ -141,7 +140,7 @@ class BetaVAE(BaseVAE):
 
         recons_loss =F.mse_loss(recons, input)
 
-        p_loss = self.perceptual_loss(input, recons)
+        p_loss = self.perceptual_loss(input, recons).mean()
 
         kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
 
@@ -156,7 +155,7 @@ class BetaVAE(BaseVAE):
         else:
             raise ValueError('Undefined loss type.')
 
-        return {'loss': loss, 'Reconstruction_Loss':recons_loss, 'KLD':kld_loss}
+        return {'loss': loss, 'Reconstruction_Loss':recons_loss, 'KLD':kld_loss, 'PL':p_loss}
 
     def sample(self,
                num_samples:int,
