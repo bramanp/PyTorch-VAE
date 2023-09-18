@@ -18,7 +18,7 @@ class MyDataset(Dataset):
                  split: str,
                  transform: Callable,
                 **kwargs):
-        self.data_dir = Path(data_path) / "OxfordCar"        
+        self.data_dir = Path(data_path) / "MyDataset"        
         self.transforms = transform
         imgs = sorted([f for f in self.data_dir.iterdir() if f.suffix == '.jpg'])
         
@@ -117,13 +117,13 @@ class VAEDataset(LightningDataModule):
                                                transforms.Resize(self.patch_size),
                                                transforms.CenterCrop(self.patch_size),
                                                transforms.ToTensor(),
-                                                 transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
+                                                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
         
          val_transforms = transforms.Compose([transforms.RandomHorizontalFlip(),
                                              transforms.Resize(self.patch_size),
                                              transforms.CenterCrop(self.patch_size),
                                              transforms.ToTensor(),
-                                               transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
+                                               transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
          self.train_dataset = MyDataset(
              self.data_dir,
